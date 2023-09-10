@@ -3,8 +3,9 @@ from tkinter import ttk, colorchooser,filedialog
 from tkinter import messagebox
 from PIL import ImageTk, Image, ImageDraw
 import PIL
-white = (255, 255, 255)
+import tkinter.ttk as ttk
 
+white = (255, 255, 255)
 width = 1000
 height =  800
 center = height//2
@@ -26,11 +27,6 @@ class main:
         self.header = Label(text = 'Colours',font = ('Aleo',25))
 
         # Creating the color pads
-
-
-
-
-
         def color_select_1():
             global color
             color = colorchooser.askcolor()[1]
@@ -122,54 +118,54 @@ class main:
 
         # Gridding Label and Canvas
 
-        self.c.grid(columnspan = 200,rowspan = 100,padx = 150,pady = 10)
-        self.header.grid(row = 1,columnspan = 10)
+        # self.c.grid(columnspan = 200,rowspan = 100,padx = 150,pady = 10)
+        # self.header.grid(row = 1,columnspan = 10)
 
         # Gridding the buttons
 
-        self.PAD1.grid(row = 2,column = 3)
-        self.PAD2.grid(row = 2,column = 4)
-        self.PAD3.grid(row = 2,column = 5)
-
-        self.PAD4.grid(row = 3,column = 4)
-        self.PAD5.grid(row = 3,column = 3)
-        self.PAD6.grid(row = 3,column = 5)
-
-        self.PAD7.grid(row = 4,column = 4)
-        self.PAD8.grid(row = 4,column = 5)
-        self.PAD9.grid(row = 4,column = 3)
-
-        self.PAD10.grid(row = 5,column = 5)
-        self.PAD11.grid(row = 5,column = 4)
-        self.PAD12.grid(row = 5,column = 3)
-
-        self.PAD13.grid(row = 6,column = 3)
-        self.PAD14.grid(row = 6,column = 4)
-        self.PAD15.grid(row = 6,column = 5)
-
-        self.PAD16.grid(row = 7,column = 3)
-        self.PAD17.grid(row = 7,column = 4)
-        self.PAD18.grid(row = 7,column = 5)
-
-        self.PAD19.grid(row = 8,column = 3)
-        self.PAD20.grid(row = 8,column = 4)
-        self.PAD21.grid(row = 8,column = 5)
-        self.PAD25.grid(row = 9,column = 3)
-        self.PAD26.grid(row = 9,column = 4)
-        self.PAD27.grid(row = 9,column = 5)
-        self.PAD28.grid(row = 12,columnspan =10,pady = 10)
-        self.PAD29.grid(row = 13,columnspan =10,pady = 5)
-        self.PAD30.grid(row = 14,columnspan =10,pady = 5)
-        self.PAD31.grid(row = 15,columnspan =10,pady = 5)
-        self.BAGSETTER.grid(row = 19,columnspan =10,pady = 10)
-        self.PAD32.grid(row = 18,columnspan =10,pady = 5)
+        # self.PAD1.grid(row = 2,column = 3)
+        # self.PAD2.grid(row = 2,column = 4)
+        # self.PAD3.grid(row = 2,column = 5)
+        #
+        # self.PAD4.grid(row = 3,column = 4)
+        # self.PAD5.grid(row = 3,column = 3)
+        # self.PAD6.grid(row = 3,column = 5)
+        #
+        # self.PAD7.grid(row = 4,column = 4)
+        # self.PAD8.grid(row = 4,column = 5)
+        # self.PAD9.grid(row = 4,column = 3)
+        #
+        # self.PAD10.grid(row = 5,column = 5)
+        # self.PAD11.grid(row = 5,column = 4)
+        # self.PAD12.grid(row = 5,column = 3)
+        #
+        # self.PAD13.grid(row = 6,column = 3)
+        # self.PAD14.grid(row = 6,column = 4)
+        # self.PAD15.grid(row = 6,column = 5)
+        #
+        # self.PAD16.grid(row = 7,column = 3)
+        # self.PAD17.grid(row = 7,column = 4)
+        # self.PAD18.grid(row = 7,column = 5)
+        #
+        # self.PAD19.grid(row = 8,column = 3)
+        # self.PAD20.grid(row = 8,column = 4)
+        # self.PAD21.grid(row = 8,column = 5)
+        # self.PAD25.grid(row = 9,column = 3)
+        # self.PAD26.grid(row = 9,column = 4)
+        # self.PAD27.grid(row = 9,column = 5)
+        # self.PAD28.grid(row = 12,columnspan =10,pady = 10)
+        # self.PAD29.grid(row = 13,columnspan =10,pady = 5)
+        # self.PAD30.grid(row = 14,columnspan =10,pady = 5)
+        # self.PAD31.grid(row = 15,columnspan =10,pady = 5)
+        # self.BAGSETTER.grid(row = 19,columnspan =10,pady = 10)
+        # self.PAD32.grid(row = 18,columnspan =10,pady = 5)
 
         # Labels and Scale
 
         self.density_label = Label(text = 'Density',font = ('Aleo',20))
-        self.density_label.grid(row = 10,columnspan = 10)
+        #self.density_label.grid(row = 10,columnspan = 10)
         self.brush_sclae = Scale(master, from_=5, to=30, orient=HORIZONTAL,font = ('aloe',12),command=self.changeW,)
-        self.brush_sclae.grid(row = 11,columnspan = 10)
+        #self.brush_sclae.grid(row = 11,columnspan = 10)
 
         # Binding canvas and buttons
 
@@ -297,16 +293,26 @@ class main:
         self.old_x = None
         self.old_y = None
 
-
-
-
-
 # The Actual MainLoop
-
 if __name__ == '__main__':
     root = Tk()
     main(root)
-    root.geometry('1000x800')
+    root.geometry('1920x1080')
+    root.configure(background='#2b2d30',menu= menubar)
     root.resizable(False,False)
+    root.overrideredirect(False)
     root.title('Paint Application')
+
+    menubar = Menu(root)
+    fileMenu = Menu(menubar, tearoff=0, font=("Hack", 13))
+    menubar.add_cascade(label="File", menu=fileMenu)
+    fileMenu.add_command(label="Open")
+    fileMenu.add_command(label="Save")
+    fileMenu.add_command(label="Exit")
+
+    editMenu = Menu(menubar, tearoff=0, font=("MV Boli", 15))
+    menubar.add_cascade(label="Edit",menu = editMenu)
+    editMenu.add_command(label="Cut")
+    editMenu.add_command(label="Copy")
+    editMenu.add_command(label="Paste")
     root.mainloop()
