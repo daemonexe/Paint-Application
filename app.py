@@ -9,6 +9,10 @@ root.title('Paint Application')
 
 ############## IMAGES SRC #####################
 SidePanelImage = PhotoImage(file = "sidepanel.png")
+LeftSidePanelImage = PhotoImage(file= "leftsidepannel.png")
+Button1Image = PhotoImage(file = "Button.png")
+
+
 
 ############## DEFINED VARIABLES #####################
 color_fg = 'black'
@@ -24,6 +28,7 @@ brush = ROUND
 def paint(e):
     global old_x
     global old_y
+
 
     if old_x and old_y:
         canvas.create_line(old_x, old_y, e.x, e.y, width=penwidth, fill=color_fg,
@@ -45,18 +50,35 @@ def reset(e):
 ############## WIDGET CREATIONS #####################
 canvas = Canvas(root,highlightthickness = 0, width=1650, height=1060, bg="white",bd = 1,relief = 'solid')
 pane = Label(root,bd = 0,image = SidePanelImage)
+leftPane = Label(root,bd = 0,image = LeftSidePanelImage)
+button1 = Label(root,bd = 0,image = Button1Image)
+button2 = Label(root,bd = 0,image = Button1Image)
+button3 = Label(root,bd = 0,image = Button1Image)
+button4 = Label(root,bd = 0,image = Button1Image)
+button5 = Label(root,bd = 0,image = Button1Image)
+button6 = Label(root,bd = 0,image = Button1Image)
+button7 = Label(root,bd = 0,image = Button1Image)
+button8 = Label(root,bd = 0,bg ='black')
 
 ############## WIDGET GRIDDING #####################
-canvas.grid(row=1,column =5,columnspan = 5,rowspan = 55)
-pane.grid(column=1, row=45,rowspan = 22,columnspan =3)
+button1.grid(row=1,column = 1,rowspan = 1,columnspan = 1,padx = 12,pady = 1)
+button2.grid(row=2,column = 1,rowspan = 1,columnspan = 1,padx = 10)
+button3.grid(row=3,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+button4.grid(row=4,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+button5.grid(row=5,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+button6.grid(row=6,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+button7.grid(row=7,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+
+canvas.grid(row=1,column =2,rowspan = 50,columnspan = 50)
+leftPane.grid(column = 100,row = 1,rowspan = 100,columnspan = 50)
 
 ############## WIDGET BINDING #####################
-canvas.bind('<B1-Motion>', paint)  # drwaing the line
+canvas.bind('<B1-Motion>', paint)  # drwaing the line change to button 1 and remove reset to line tool
 canvas.bind('<ButtonRelease-1>',reset)
 
 ############## MENU BAR  #####################
 menubar = Menu(root)
-root.configure(background='#2b2d30', menu=menubar)
+root.configure(background='#161616', menu=menubar)
 
 fileMenu = Menu(menubar, tearoff=0, font=("Hack", 15))
 menubar.add_cascade(label="File", menu=fileMenu)
@@ -66,7 +88,6 @@ fileMenu.add_command(label="Save", font=("Hack", 13))
 fileMenu.add_command(label="Save As", font=("Hack", 13))
 fileMenu.add_separator()
 fileMenu.add_command(label="Exit", command=exit, font=("Hack", 13))
-
 
 editMenu = Menu(menubar, tearoff=0, font=("Hack", 13))
 menubar.add_cascade(label="Tools", menu=editMenu)
