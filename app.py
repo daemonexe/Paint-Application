@@ -18,7 +18,9 @@ LineBrushImage = PhotoImage(file ="Srcimages/linebrushTool.png")
 EraserToolImage = PhotoImage(file ="Srcimages/erasertool.png")
 PencilTool2Image = PhotoImage(file ="Srcimages/pencilTool2Image.png")
 PencilTool2HoverImage = PhotoImage(file ="Srcimages/pencilTool2ImageHover.png")
-
+saveIconImage = PhotoImage(file = 'Srcimages/saveicon.png')
+PencilImage = PhotoImage(file = "Srcimages/selectedPencilBrushImage.png")
+EraserSelected = PhotoImage(file = "Srcimages/eraserSelected.png")
 
 ############## DEFINED VARIABLES #####################
 color_fg = 'black'
@@ -72,6 +74,28 @@ def HoverAnimation(e):
 def LeaveAnimation(e):
     button2.config(image = PencilTool2Image)
 
+def checkSelected_Brush():
+    global selectedBrush
+    if selectedBrush == "default":
+        print("default is selected")
+        button1.configure(image = PencilImage)
+    else:
+        print('brush not the default one')
+
+def pressedOnEraser(e):
+    global selectedBrush
+    global color_fg,color_bg
+    button1.configure(image =Button1Image)
+    button4.configure(image = EraserSelected)
+    color_fg = color_bg
+    #selectedBrush = "eraser"
+
+def pressedOnPencilToolA(e):
+    global color_fg
+    button1.configure(image= PencilImage)
+    button4.configure(image = EraserToolImage)
+    color_fg = "black"
+
 
 ############## WIDGET CREATIONS #####################
 canvas = Canvas(root,highlightthickness = 0, width=1640, height=1060, bg="white",bd = 1,relief = 'solid')
@@ -83,7 +107,7 @@ button3 = Label(root,bd = 0,image = LineBrushImage)
 button4 = Label(root,bd = 0,image = EraserToolImage)
 button5 = Label(root,bd = 0,image = Button1Image)
 button6 = Label(root,bd = 0,image = Button1Image)
-button7 = Label(root,bd = 0,image = Button1Image)
+button7 = Label(root,bd = 0,image = saveIconImage)
 button8 = Button(root,bd = 5,bg = color_fg,width= 5, height= 2,relief= SUNKEN,command= colourChose)
 frame = Frame(root,bg = 'red')
 ## COLOR PALETS
@@ -117,18 +141,35 @@ p25 = Button(frame,bg = 'orange',width = 4,height= 2)
 p26= Button(frame,bg = 'black',width = 4,height= 2)
 p27 = Button(frame,bg = 'black',width = 4,height= 2)
 p28= Button(frame,bg = 'black',width = 4,height= 2)
-p29 = Button(frame,bg = 'yellow',width = 4,height= 2)
+p29 = Button(frame,bg = '#323e45',width = 4,height= 2)
 p30 = Button(frame,bg = 'orange',width = 4,height= 2)
 
-p31= Button(frame,bg = 'black',width = 4,height= 2)
-p32 = Button(frame,bg = 'black',width = 4,height= 2)
-p33= Button(frame,bg = 'black',width = 4,height= 2)
-p34 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p35 = Button(frame,bg = 'orange',width = 4,height= 2)
+p31= Button(frame,bg = 'red',width = 4,height= 2)
+p32 = Button(frame,bg = '#efeeb4',width = 4,height= 2)
+p33= Button(frame,bg = '#58b368',width = 4,height= 2)
+p34 = Button(frame,bg = '#dad873',width = 4,height= 2)
+p35 = Button(frame,bg = '#efeeb4',width = 4,height= 2)
 
+p36 = Button(frame,bg = 'blue',width = 4,height= 2)
+
+p37 = Button(frame,bg = '#8ba88e',width = 4,height= 2)
+p38= Button(frame,bg = '#5a786f',width = 4,height= 2)
+p39 = Button(frame,bg = '#3a4e51',width = 4,height= 2)
+p40 = Button(frame,bg = '#323e45',width = 4,height= 2)
+p41 = Button(frame,bg = '#323e45',width = 4,height= 2)
+
+p42 = Button(frame,bg = '#ccd2c6',width = 4,height= 2)
+p43 =  Button(frame,bg = '#95adbe',width = 4,height= 2)
+p44 = Button(frame,bg = '#574f7d',width = 4,height= 2)
+p45 = Button(frame,bg = '#503a65',width = 4,height= 2)
+p46 = Button(frame,bg = '#323e45',width = 4,height= 2)
+
+p42 = Button(frame,bg = '#e0f0ea',width = 4,height= 2)
+p43 =  Button(frame,bg = '#95adbe',width = 4,height= 2)
+p44 = Button(frame,bg = '#574f7d',width = 4,height= 2)
+p45 = Button(frame,bg = '#503a65',width = 4,height= 2)
+p46 = Button(frame,bg = '#3c2a4d',width = 4,height= 2)
 ############## WIDGET GRIDDING #####################
-
-
 button1.grid(row=1,column = 1,rowspan = 1,columnspan = 1)
 button2.grid(row=2,column = 1)
 button3.grid(row=3,column = 1,rowspan = 1,columnspan = 1,padx = 1)
@@ -137,54 +178,69 @@ button5.grid(row=5,column = 1,rowspan = 1,columnspan = 1,padx = 11)
 button6.grid(row=6,column = 1,rowspan = 1,columnspan = 1,padx = 11)
 button7.grid(row=41,column = 1,rowspan = 15,columnspan = 1,padx = 0)
 button8.grid(row=50,column = 1,rowspan = 1,columnspan = 1,padx = 11)
+
 frame.grid(row=1,column = 100,rowspan = 5,columnspan = 5,padx = 12,pady = 15)
+
 p1.grid(row = 1,column = 1,rowspan = 1,columnspan = 1)
 p2.grid(row = 1,column = 2,rowspan = 1,columnspan = 1)
 p3.grid(row = 1,column = 3,rowspan = 1,columnspan = 1)
 p4.grid(row = 1,column = 4,rowspan = 1,columnspan = 1)
 p5.grid(row = 1,column = 5,rowspan = 1,columnspan = 1)
 p6.grid(row = 2,column = 1,rowspan = 1,columnspan = 1)
+
 p7.grid(row = 2,column = 2,rowspan = 1,columnspan = 1)
 p8.grid(row = 2,column = 3,rowspan = 1,columnspan = 1)
 p9.grid(row = 2,column = 4,rowspan = 1,columnspan = 1)
 p10.grid(row = 2,column = 5,rowspan = 1,columnspan = 1)
 p11.grid(row = 3,column = 1,rowspan = 1,columnspan = 1)
+
 p12.grid(row = 3,column = 2,rowspan = 1,columnspan = 1)
 p13.grid(row = 3,column = 3,rowspan = 1,columnspan = 1)
 p14.grid(row = 3,column = 4,rowspan = 1,columnspan = 1)
 p15.grid(row = 3,column = 5,rowspan = 1,columnspan = 1)
 p16.grid(row = 4,column = 1,rowspan = 1,columnspan = 1)
+
 p17.grid(row = 4,column = 2,rowspan = 1,columnspan = 1)
 p18.grid(row = 4,column = 3,rowspan = 1,columnspan = 1)
 p19.grid(row = 4,column = 4,rowspan = 1,columnspan = 1)
 p20.grid(row = 4,column = 5,rowspan = 1,columnspan = 1)
 p16.grid(row = 4,column = 1,rowspan = 1,columnspan = 1)
+
 p17.grid(row = 4,column = 2,rowspan = 1,columnspan = 1)
 p18.grid(row = 4,column = 3,rowspan = 1,columnspan = 1)
 p19.grid(row = 4,column = 4,rowspan = 1,columnspan = 1)
 p20.grid(row = 5,column = 5,rowspan = 1,columnspan = 1)
 p21.grid(row = 5,column = 1,rowspan = 1,columnspan = 1)
+
 p22.grid(row = 5,column = 2,rowspan = 1,columnspan = 1)
 p23.grid(row = 5,column = 3,rowspan = 1,columnspan = 1)
 p24.grid(row = 5,column = 4,rowspan = 1,columnspan = 1)
 p25.grid(row = 5,column = 5,rowspan = 1,columnspan = 1)
 p26.grid(row = 6,column = 1,rowspan = 1,columnspan = 1)
+
 p27.grid(row = 6,column = 2,rowspan = 1,columnspan = 1)
 p28.grid(row = 6,column = 3,rowspan = 1,columnspan = 1)
 p29.grid(row = 6,column = 4,rowspan = 1,columnspan = 1)
 p30.grid(row = 6,column = 5,rowspan = 1,columnspan = 1)
 p31.grid(row = 6,column = 1,rowspan = 1,columnspan = 1)
+
 p32.grid(row = 6,column = 2,rowspan = 1,columnspan = 1)
 p33.grid(row = 6,column = 3,rowspan = 1,columnspan = 1)
 p34.grid(row = 6,column = 4,rowspan = 1,columnspan = 1)
 p35.grid(row = 6,column = 5,rowspan = 1,columnspan = 1)
+p36.grid(row = 4,column = 5,rowspan = 1,columnspan = 1)
 
+p37.grid(row = 7,column = 1,rowspan = 1,columnspan = 1)
+p38.grid(row = 7,column = 2,rowspan = 1,columnspan = 1)
+p39.grid(row = 7,column = 3,rowspan = 1,columnspan = 1)
+p40.grid(row = 7,column = 4,rowspan = 1,columnspan = 1)
+p41.grid(row = 7,column = 5,rowspan = 1,columnspan = 1)
 
-# P2.grid(row=1,column = 72,rowspan = 2,columnspan = 58,padx = 1)
-# P3.grid(row=1,column = 74,rowspan = 2,columnspan = 71,padx = 1)
-# P4.grid(row=1,column = 110,rowspan = 2,columnspan = 72 ,padx = 1)
-# P5.grid(row=1,column = 125,rowspan = 2,columnspan = 85 ,padx = 1)
-# P6.grid(row=2,column = 70,rowspan = 2,columnspan = 45,pady = 1)
+p42.grid(row = 8,column = 1,rowspan = 1,columnspan = 1)
+p43.grid(row = 8,column = 2,rowspan = 1,columnspan = 1)
+p44.grid(row = 8,column = 3,rowspan = 1,columnspan = 1)
+p45.grid(row = 8,column = 4,rowspan = 1,columnspan = 1)
+p46.grid(row = 8,column = 5,rowspan = 1,columnspan = 1)
 
 
 canvas.grid(row=1,column =2,rowspan = 50,columnspan = 50)
@@ -198,6 +254,10 @@ canvas.bind('<ButtonRelease-1>',reset)
 button2.bind('<Enter>', HoverAnimation)  # drwaing the line change to button 1 and remove reset to line tool
 button2.bind('<Leave>', LeaveAnimation)  # drwaing the line change to button 1 and remove reset to line tool
 
+button4.bind("<Button-1>",pressedOnEraser)
+button1.bind("<Button-1>",pressedOnPencilToolA)
+
+checkSelected_Brush()
 
 ############## MENU BAR  #####################
 menubar = Menu(root)
