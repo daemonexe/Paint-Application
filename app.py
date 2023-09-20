@@ -1,11 +1,8 @@
-import random
 from tkinter import *
 from tkinter import colorchooser
-import tkinter as tk
-from PIL import ImageTk, Image, ImageDraw
-import PIL
+from tkinter import messagebox
 import pyautogui
-import time
+from tkinter.filedialog import asksaveasfile
 
 root = Tk()
 root.geometry('1920x1080')
@@ -85,7 +82,7 @@ def LeaveAnimation(e):
     button2.config(image = PencilTool2Image)
 
 def pressedOnPencilToolA(e):
-    global color_fg,tool,old_x,old_y #1
+    global color_fg,tool,old_x,old_y,brush
     old_x = None
     old_y = None
     button1.configure(image= PencilImage)
@@ -93,27 +90,31 @@ def pressedOnPencilToolA(e):
     button4.configure(image = EraserToolImage)
     button3.configure(image = LineBrushImage)
     tool = '1'
+    brush = ROUND
 
 def pressedOnP2P(e):
-    global color_fg,tool
+    global color_fg,tool,brush
     button2.configure(image = PencilBrush2)
     button1.configure(image =Button1Image)
     button3.configure(image =LineBrushImage)
     button4.configure(image = EraserToolImage)
     color_fg = 'black'
     tool = '2'
+    brush = BUTT
 
 def pressedOnLineBrush(e):
-    global color_fg, selectedBrush, tool
+    global color_fg, selectedBrush, tool,brush
     tool = 'line'
     button1.configure(image =Button1Image)
     button2.configure(image = PencilTool2Image)
     button3.configure(image = LineBrushToolSelected)
     button4.configure(image = EraserToolImage)
     color_fg = 'black'
+    brush = ROUND
+
 
 def pressedOnEraser(e):
-    global selectedBrush
+    global selectedBrush,brush,tool
     global color_fg,color_bg
     button1.configure(image =Button1Image)
     button2.configure(image = PencilTool2Image)
@@ -121,6 +122,7 @@ def pressedOnEraser(e):
     button3.configure(image = LineBrushImage)
     color_fg = color_bg
     tool = "3"
+    brush = ROUND
 
 def add_value(e):
     global penwidth
@@ -139,8 +141,23 @@ def sub_value(e):
         pass
 
 def save(e):
+    files = [('JPEG', '*.jpeg'),('PNG', '*.png')]
+    file = asksaveasfile(filetypes = files, defaultextension = files)
     myScreenshot = pyautogui.screenshot(region = (72,20 ,1650,1050))
-    myScreenshot.save(r"C:\Users\Thanujan.K\PycharmProjects\PaintProjectHittler\google.png")
+
+    myScreenshot.save(file)
+    messagebox.showinfo("Paint Application","File Saved Succesfully ")
+
+def saveWithinDirectory(e):
+    # file = r"C:\Users\Thanujan.K\PycharmProjects\PaintProjectHittler\United.jpg"
+    # myScreenshot = pyautogui.screenshot(region = (72,20 ,1650,1050))
+    # myScreenshot.save(file)
+    screenshot = pyautogui.screenshot(region = (72,20 ,1650,1050))
+    screenshot.save("screenshot.png")
+
+
+
+
 
 
 ############## WIDGET CREATIONS #####################
@@ -157,53 +174,71 @@ button7 = Label(root,bd = 0,image = saveIconImage)
 button8 = Button(root,bd = 5,bg = color_fg,width= 5, height= 2,relief= SUNKEN,command= colourChose)
 frame = Frame(root,bg = 'red')
 
+def getColorCodeFromButton(e):
+    global color_fg,button8
+    button8['bg'] = e
+    color_fg = e
+
+
+
+
 if tool == "pen":
     pressedOnPencilToolA(E)
 
+def save_delay(e):
+    root.after(2000,save(E))
+
+
+
+
+
+
+
 ## COLOR PALETS
-p1 = Button(frame,bg = 'red',width = 4,height= 2)
-p2 = Button(frame,bg = 'green',width = 4,height= 2)
-p3 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p4 = Button(frame,bg = 'orange',width = 4,height= 2)
-p5 = Button(frame,bg = 'orange',width = 4,height= 2)
+p1 = Button(frame,bg = '#ff1919',width = 4,height= 2,command=lambda:getColorCodeFromButton("#ff1919"))
+p2 = Button(frame,bg = '#ff7733',width = 4,height= 2,command=lambda:getColorCodeFromButton("#ff7733"))
+p3 = Button(frame,bg = '#ffbb34',width = 4,height= 2,command=lambda:getColorCodeFromButton("#ffbb34"))
+p4 = Button(frame,bg = '#ffff3e',width = 4,height= 2,command=lambda:getColorCodeFromButton("#ffff3e"))
+p5 = Button(frame,bg = '#bbfe33',width = 4,height= 2,command=lambda:getColorCodeFromButton("#bbfe33"))
 
-p6 = Button(frame,bg = 'black',width = 4,height= 2)
-p7 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p8 = Button(frame,bg = 'orange',width = 4,height= 2)
-p9 = Button(frame,bg = 'orange',width = 4,height= 2)
-p10 = Button(frame,bg = 'black',width = 4,height= 2)
+p6 = Button(frame,bg = '#bbfe33',width = 4,height= 2,command=lambda:getColorCodeFromButton("#bbfe33"))
+p7 = Button(frame,bg = '#66ff19',width = 4,height= 2,command=lambda:getColorCodeFromButton("#bbfe33"))
+p8 = Button(frame,bg = '#33ff77',width = 4,height= 2,command=lambda:getColorCodeFromButton("#bbfe33"))
+p9 = Button(frame,bg = '#4dfb88',width = 4,height= 2,command=lambda:getColorCodeFromButton("#3233ff"))
+p10 = Button(frame,bg = '#4dffc5',width = 4,height= 2,command=lambda:getColorCodeFromButton("#7734fe"))
 
-p11 = Button(frame,bg = 'black',width = 4,height= 2)
-p12 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p13 = Button(frame,bg = 'orange',width = 4,height= 2)
-p14 = Button(frame,bg = 'orange',width = 4,height= 2)
-p15 = Button(frame,bg = 'black',width = 4,height= 2)
+p11 = Button(frame,bg = '#33fdfd',width = 4,height= 2)
+p12 = Button(frame,bg = '#34baff',width = 4,height= 2)
+p13 = Button(frame,bg = '#3377fe',width = 4,height= 2)
+p14 = Button(frame,bg = '#3233ff',width = 4,height= 2)
+p15 = Button(frame,bg = '#7734fe',width = 4,height= 2)
 
-p16 = Button(frame,bg = 'black',width = 4,height= 2)
-p17 = Button(frame,bg = 'black',width = 4,height= 2)
-p18 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p19 = Button(frame,bg = 'orange',width = 4,height= 2)
-p20 = Button(frame,bg = 'orange',width = 4,height= 2)
+p16 = Button(frame,bg = '#ff7d92',width = 4,height= 2)
+p17 = Button(frame,bg = '#fcb9c2',width = 4,height= 2)
+p18 = Button(frame,bg = '#fed3b4',width = 4,height= 2)
+p19 = Button(frame,bg = '#ffe5ce',width = 4,height= 2)
+p36 = Button(frame,bg = '#faf8c9',width = 4,height= 2)
 
-p21 = Button(frame,bg = 'black',width = 4,height= 2)
-p22 = Button(frame,bg = 'black',width = 4,height= 2)
-p23 = Button(frame,bg = 'black',width = 4,height= 2)
-p24 = Button(frame,bg = 'yellow',width = 4,height= 2)
-p25 = Button(frame,bg = 'orange',width = 4,height= 2)
+p20 = Button(frame,bg = 'black',width = 4,height= 2)
+
+p21 = Button(frame,bg = '#f4f1e7',width = 4,height= 2)
+p22 = Button(frame,bg = '#dcd7f4',width = 4,height= 2)
+p23 = Button(frame,bg = '#c1bbdf',width = 4,height= 2)
+p24 = Button(frame,bg = '#ccd0fe',width = 4,height= 2)
+p25 = Button(frame,bg = '#f4f1e7',width = 4,height= 2)
 
 p26 = Button(frame,bg = 'black',width = 4,height= 2)
 p27 = Button(frame,bg = 'black',width = 4,height= 2)
 p28 = Button(frame,bg = 'black',width = 4,height= 2)
-p29 = Button(frame,bg = '#323e45',width = 4,height= 2)
-p30 = Button(frame,bg = 'orange',width = 4,height= 2)
+p29 = Button(frame,bg = 'black',width = 4,height= 2)
+p30 = Button(frame,bg = 'black',width = 4,height= 2)
 
-p31 = Button(frame,bg = 'red',width = 4,height= 2)
-p32 = Button(frame,bg = '#efeeb4',width = 4,height= 2)
-p33 = Button(frame,bg = '#58b368',width = 4,height= 2)
-p34 = Button(frame,bg = '#dad873',width = 4,height= 2)
-p35 = Button(frame,bg = '#efeeb4',width = 4,height= 2)
+p31 = Button(frame,bg = '#b99976',width = 4,height= 2)
+p32 = Button(frame,bg = '#d2b48c',width = 4,height= 2)
+p33 = Button(frame,bg = '#e5d3b3',width = 4,height= 2)
+p34 = Button(frame,bg = '#987554',width = 4,height= 2)
+p35 = Button(frame,bg = '#664229',width = 4,height= 2)
 
-p36 = Button(frame,bg = 'blue',width = 4,height= 2)
 p37 = Button(frame,bg = '#8ba88e',width = 4,height= 2)
 p38= Button(frame,bg = '#5a786f',width = 4,height= 2)
 p39 = Button(frame,bg = '#3a4e51',width = 4,height= 2)
@@ -329,8 +364,7 @@ fileMenu = Menu(menubar, tearoff=0, font=("Hack", 15))
 menubar.add_cascade(label="File", menu=fileMenu)
 fileMenu.add_command(label="New Page", font=("Hack", 13),command=clearCanvas)
 fileMenu.add_command(label="Clear Page",font=("Hack", 13),command=clearCanvas)
-fileMenu.add_command(label="Save", font=("Hack", 13))
-fileMenu.add_command(label="Save As", font=("Hack", 13))
+fileMenu.add_command(label="Save As", font=("Hack", 13),command = lambda:save_delay(E))
 fileMenu.add_separator()
 fileMenu.add_command(label="Exit", command=exit, font=("Hack", 13))
 
@@ -338,10 +372,10 @@ editMenu = Menu(menubar, tearoff=0, font=("Hack", 13))
 menubar.add_cascade(label="Tools", menu=editMenu)
 editMenu.add_command(label="Change Background Color",command = changeBgCanvas)
 editMenu.add_separator()
-editMenu.add_command(label="Pen")
-editMenu.add_command(label="Line Tool")
+editMenu.add_command(label="Pen",command=lambda:pressedOnPencilToolA(E))
+editMenu.add_command(label="Line Tool",command=lambda:pressedOnLineBrush(E))
 editMenu.add_command(label="Cascade Tool")
-editMenu.add_command(label="Eraser")
-editMenu.add_command(label="Change pen color")
+editMenu.add_command(label="Eraser",command=lambda:pressedOnEraser(E))
+editMenu.add_command(label="Change pen color",command=colourChose)
 
 root.mainloop()
