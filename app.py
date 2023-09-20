@@ -2,7 +2,10 @@ import random
 from tkinter import *
 from tkinter import colorchooser
 import tkinter as tk
-
+from PIL import ImageTk, Image, ImageDraw
+import PIL
+import pyautogui
+import time
 
 root = Tk()
 root.geometry('1920x1080')
@@ -35,6 +38,12 @@ old_y = None
 penwidth = 5
 brush = ROUND
 tool = "pen"
+width = 1000
+height =  800
+center = height//2
+white = (255, 255, 255)
+green = (0,128,0)
+
 
 ############## CANVAS FUNCTIONS #####################
 def paint(e):
@@ -64,7 +73,7 @@ def clearCanvas():
 def reset(e):
     if tool == 'line':
         pass
-    if tool == "1":
+    if tool == "1" or tool == "2" or tool == "3":
         global old_x,old_y
         old_x = None
         old_y = None
@@ -92,6 +101,7 @@ def pressedOnP2P(e):
     button3.configure(image =LineBrushImage)
     button4.configure(image = EraserToolImage)
     color_fg = 'black'
+    tool = '2'
 
 def pressedOnLineBrush(e):
     global color_fg, selectedBrush, tool
@@ -110,6 +120,7 @@ def pressedOnEraser(e):
     button4.configure(image = EraserSelected)
     button3.configure(image = LineBrushImage)
     color_fg = color_bg
+    tool = "3"
 
 def add_value(e):
     global penwidth
@@ -126,6 +137,11 @@ def sub_value(e):
         numDisplay.configure(text = penwidth)
     else:
         pass
+
+def save(e):
+    myScreenshot = pyautogui.screenshot(region = (72,20 ,1650,1050))
+    myScreenshot.save(r"C:\Users\Thanujan.K\PycharmProjects\PaintProjectHittler\google.png")
+
 
 ############## WIDGET CREATIONS #####################
 canvas = Canvas(root,highlightthickness = 0, width=1640, height=1060, bg="white",bd = 1,relief = 'solid')
@@ -285,6 +301,9 @@ subButton.grid(row = 2,column = 55,rowspan = 28,columnspan = 51)
 numDisplay.grid(row = 2,column = 101,rowspan = 28,columnspan = 100)
 addButton.grid(row = 2,column = 102,rowspan = 28,columnspan = 100)
 
+
+
+
 ############## WIDGET BINDING #####################
 
 button4.bind("<Button-1>",pressedOnEraser)
@@ -299,6 +318,8 @@ subButton.bind("<Button-1>",sub_value)
 
 addButton.bind("<B1-Motion>",add_value)
 subButton.bind("<B1-Motion>",sub_value)
+
+button7.bind("<Button-1>",save)
 
 ############## MENU BAR  #####################
 menubar = Menu(root)
