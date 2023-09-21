@@ -41,7 +41,6 @@ center = height//2
 white = (255, 255, 255)
 green = (0,128,0)
 
-
 ############## CANVAS FUNCTIONS #####################
 def paint(e):
         global old_x
@@ -112,7 +111,6 @@ def pressedOnLineBrush(e):
     color_fg = 'black'
     brush = ROUND
 
-
 def pressedOnEraser(e):
     global selectedBrush,brush,tool
     global color_fg,color_bg
@@ -155,11 +153,6 @@ def saveWithinDirectory(e):
     screenshot = pyautogui.screenshot(region = (72,20 ,1650,1050))
     screenshot.save("screenshot.png")
 
-
-
-
-
-
 ############## WIDGET CREATIONS #####################
 canvas = Canvas(root,highlightthickness = 0, width=1640, height=1060, bg="white",bd = 1,relief = 'solid')
 pane = Label(root,bd = 0,image = SidePanelImage)
@@ -173,26 +166,21 @@ button6 = Label(root,bd = 0,image = EmptyBlock)
 button7 = Label(root,bd = 0,image = saveIconImage)
 button8 = Button(root,bd = 5,bg = color_fg,width= 5, height= 2,relief= SUNKEN,command= colourChose)
 frame = Frame(root,bg = 'red')
+frame2 = Frame(root,bg = 'red')
+frame3 = Frame(root,bg = 'red')
+frame4 = Frame(root,bg = 'red')
+
 
 def getColorCodeFromButton(e):
     global color_fg,button8
     button8['bg'] = e
     color_fg = e
 
-
-
-
 if tool == "pen":
     pressedOnPencilToolA(E)
 
 def save_delay(e):
     root.after(2000,save(E))
-
-
-
-
-
-
 
 ## COLOR PALETS
 p1 = Button(frame,bg = '#ff1919',width = 4,height= 2,command=lambda:getColorCodeFromButton("#ff1919"))
@@ -211,45 +199,64 @@ p11 = Button(frame,bg = '#33fdfd',width = 4,height= 2)
 p12 = Button(frame,bg = '#34baff',width = 4,height= 2)
 p13 = Button(frame,bg = '#3377fe',width = 4,height= 2)
 p14 = Button(frame,bg = '#3233ff',width = 4,height= 2)
-p15 = Button(frame,bg = '#7734fe',width = 4,height= 2)
+p15 = Button(frame,bg = 'red',width = 4,height= 2)
 
-p16 = Button(frame,bg = '#ff7d92',width = 4,height= 2)
-p17 = Button(frame,bg = '#fcb9c2',width = 4,height= 2)
-p18 = Button(frame,bg = '#fed3b4',width = 4,height= 2)
-p19 = Button(frame,bg = '#ffe5ce',width = 4,height= 2)
-p36 = Button(frame,bg = '#faf8c9',width = 4,height= 2)
+p16 = Button(frame2,bg = '#ff7d92',width = 4,height= 2)
+p17 = Button(frame2,bg = '#fcb9c2',width = 4,height= 2)
+p18 = Button(frame2,bg = '#fed3b4',width = 4,height= 2)
+p19 = Button(frame2,bg = '#ffe5ce',width = 4,height= 2)
+p36 = Button(frame2,bg = '#faf8c9',width = 4,height= 2)
 
-p20 = Button(frame,bg = 'black',width = 4,height= 2)
+p20 = Button(frame2,bg = 'black',width = 4,height= 2)
 
-p21 = Button(frame,bg = '#f4f1e7',width = 4,height= 2)
-p22 = Button(frame,bg = '#dcd7f4',width = 4,height= 2)
-p23 = Button(frame,bg = '#c1bbdf',width = 4,height= 2)
-p24 = Button(frame,bg = '#ccd0fe',width = 4,height= 2)
-p25 = Button(frame,bg = '#f4f1e7',width = 4,height= 2)
+p21 = Button(frame2,bg = '#f4f1e7',width = 4,height= 2)
+p22 = Button(frame2,bg = '#dcd7f4',width = 4,height= 2)
+p23 = Button(frame2,bg = '#c1bbdf',width = 4,height= 2)
+p24 = Button(frame2,bg = '#ccd0fe',width = 4,height= 2)
 
-p26 = Button(frame,bg = 'black',width = 4,height= 2)
-p27 = Button(frame,bg = 'black',width = 4,height= 2)
-p28 = Button(frame,bg = 'black',width = 4,height= 2)
-p29 = Button(frame,bg = 'black',width = 4,height= 2)
-p30 = Button(frame,bg = 'black',width = 4,height= 2)
+p25 = Button(frame2,bg = '#f4f1e7',width = 4,height= 2)
 
-p31 = Button(frame,bg = '#b99976',width = 4,height= 2)
-p32 = Button(frame,bg = '#d2b48c',width = 4,height= 2)
-p33 = Button(frame,bg = '#e5d3b3',width = 4,height= 2)
-p34 = Button(frame,bg = '#987554',width = 4,height= 2)
-p35 = Button(frame,bg = '#664229',width = 4,height= 2)
+p26 = Button(frame2,bg = 'black',width = 4,height= 2)
+p27 = Button(frame2,bg = 'black',width = 4,height= 2)
+p28 = Button(frame2,bg = 'black',width = 4,height= 2)
+p29 = Button(frame2,bg = 'black',width = 4,height= 2)
+p30 = Button(frame2,bg = 'black',width = 4,height= 2)
 
-p37 = Button(frame,bg = '#8ba88e',width = 4,height= 2)
-p38= Button(frame,bg = '#5a786f',width = 4,height= 2)
-p39 = Button(frame,bg = '#3a4e51',width = 4,height= 2)
-p40 = Button(frame,bg = '#323e45',width = 4,height= 2)
+p31 = Button(frame3,bg = '#b99976',width = 4,height= 2)
+p32 = Button(frame3,bg = '#d2b48c',width = 4,height= 2)
+p33 = Button(frame3,bg = '#e5d3b3',width = 4,height= 2)
+p34 = Button(frame3,bg = '#987554',width = 4,height= 2)
+p35 = Button(frame3,bg = '#664229',width = 4,height= 2)
 
-p41 = Button(frame,bg = '#323e45',width = 4,height= 2)
-p42 = Button(frame,bg = '#ccd2c6',width = 4,height= 2)
-p43 =  Button(frame,bg = '#95adbe',width = 4,height= 2)
-p44 = Button(frame,bg = '#574f7d',width = 4,height= 2)
-p45 = Button(frame,bg = '#503a65',width = 4,height= 2)
-p46 = Button(frame,bg = '#3c2a4d',width = 4,height= 2)
+p37 = Button(frame3,bg = '#8ba88e',width = 4,height= 2)
+p38= Button(frame3,bg = '#5a786f',width = 4,height= 2)
+p39 = Button(frame3,bg = '#3a4e51',width = 4,height= 2)
+p40 = Button(frame3,bg = '#323e45',width = 4,height= 2)
+p41 = Button(frame3,bg = '#323e45',width = 4,height= 2)
+
+p42 = Button(frame3,bg = 'orange',width = 4,height= 2)
+p43 =  Button(frame3,bg = 'orange',width = 4,height= 2)
+p44 = Button(frame3,bg = 'orange',width = 4,height= 2)
+p45 = Button(frame3,bg = 'orange',width = 4,height= 2)
+p46 = Button(frame3,bg = 'orange',width = 4,height= 2)
+
+p47 = Button(frame4,bg = 'red',width = 4,height= 2)
+p48 = Button(frame4,bg = 'red',width = 4,height= 2)
+p49 = Button(frame4,bg = 'red',width = 4,height= 2)
+p50 = Button(frame4,bg = 'red',width = 4,height= 2)
+p51 = Button(frame4,bg = 'red',width = 4,height= 2)
+
+p52 = Button(frame4,bg = 'red',width = 4,height= 2)
+p53 = Button(frame4,bg = 'red',width = 4,height= 2)
+p54 = Button(frame4,bg = 'red',width = 4,height= 2)
+p55 = Button(frame4,bg = 'red',width = 4,height= 2)
+p56 = Button(frame4,bg = 'red',width = 4,height= 2)
+
+p57 = Button(frame4,bg = 'red',width = 4,height= 2)
+p58 = Button(frame4,bg = 'red',width = 4,height= 2)
+p59 = Button(frame4,bg = 'red',width = 4,height= 2)
+p60 = Button(frame4,bg = 'red',width = 4,height= 2)
+p61 = Button(frame4,bg = 'red',width = 4,height= 2)
 
 ############## WIDGET GRIDDING #####################
 
@@ -266,7 +273,10 @@ subButton = Label(image =subButtonImage,bd=0,bg = "#161616")
 numDisplay = Label(text = f"{penwidth}",fg = '#c8c8c8',bd = 5,bg ="#161616",font = ("Hack",14) )
 addButton = Label(image =addbuttonImage,bd=0,bg = "#161616")
 
-frame.grid(row=1,column = 100,rowspan = 5,columnspan = 5,padx = 12,pady = 15)
+frame.grid(row=1,column = 100,rowspan =3 ,columnspan = 5,padx = 12)
+frame2.grid(row=2,column = 100,rowspan =10 ,columnspan = 5,padx = 12)
+frame3.grid(row=3,column = 100,rowspan =25 ,columnspan = 5,padx = 12)
+frame4.grid(row=4,column = 100,rowspan =40 ,columnspan = 5,padx = 12)
 
 p1.grid(row = 1,column = 1,rowspan = 1,columnspan = 1)
 p2.grid(row = 1,column = 2,rowspan = 1,columnspan = 1)
@@ -292,17 +302,12 @@ p18.grid(row = 4,column = 3,rowspan = 1,columnspan = 1)
 p19.grid(row = 4,column = 4,rowspan = 1,columnspan = 1)
 p20.grid(row = 4,column = 5,rowspan = 1,columnspan = 1)
 
-p16.grid(row = 4,column = 1,rowspan = 1,columnspan = 1)
-p17.grid(row = 4,column = 2,rowspan = 1,columnspan = 1)
-p18.grid(row = 4,column = 3,rowspan = 1,columnspan = 1)
-p19.grid(row = 4,column = 4,rowspan = 1,columnspan = 1)
-p20.grid(row = 5,column = 5,rowspan = 1,columnspan = 1)
-
 p21.grid(row = 5,column = 1,rowspan = 1,columnspan = 1)
 p22.grid(row = 5,column = 2,rowspan = 1,columnspan = 1)
 p23.grid(row = 5,column = 3,rowspan = 1,columnspan = 1)
 p24.grid(row = 5,column = 4,rowspan = 1,columnspan = 1)
 p25.grid(row = 5,column = 5,rowspan = 1,columnspan = 1)
+
 
 p26.grid(row = 6,column = 1,rowspan = 1,columnspan = 1)
 p27.grid(row = 6,column = 2,rowspan = 1,columnspan = 1)
@@ -310,34 +315,46 @@ p28.grid(row = 6,column = 3,rowspan = 1,columnspan = 1)
 p29.grid(row = 6,column = 4,rowspan = 1,columnspan = 1)
 p30.grid(row = 6,column = 5,rowspan = 1,columnspan = 1)
 
-p31.grid(row = 6,column = 1,rowspan = 1,columnspan = 1)
-p32.grid(row = 6,column = 2,rowspan = 1,columnspan = 1)
-p33.grid(row = 6,column = 3,rowspan = 1,columnspan = 1)
-p34.grid(row = 6,column = 4,rowspan = 1,columnspan = 1)
-p35.grid(row = 6,column = 5,rowspan = 1,columnspan = 1)
+p31.grid(row = 7,column = 1,rowspan = 1,columnspan = 1)
+p32.grid(row = 7,column = 2,rowspan = 1,columnspan = 1)
+p33.grid(row = 7,column = 3,rowspan = 1,columnspan = 1)
+p34.grid(row = 7,column = 4,rowspan = 1,columnspan = 1)
+p35.grid(row = 7,column = 5,rowspan = 1,columnspan = 1)
 
-p36.grid(row = 4,column = 5,rowspan = 1,columnspan = 1)
-p37.grid(row = 7,column = 1,rowspan = 1,columnspan = 1)
-p38.grid(row = 7,column = 2,rowspan = 1,columnspan = 1)
-p39.grid(row = 7,column = 3,rowspan = 1,columnspan = 1)
-p40.grid(row = 7,column = 4,rowspan = 1,columnspan = 1)
+p37.grid(row = 8,column = 1,rowspan = 1,columnspan = 1)
+p38.grid(row = 8,column = 2,rowspan = 1,columnspan = 1)
+p39.grid(row = 8,column = 3,rowspan = 1,columnspan = 1)
+p40.grid(row = 8,column = 4,rowspan = 1,columnspan = 1)
+p41.grid(row = 8,column = 5,rowspan = 1,columnspan = 1)
 
-p41.grid(row = 7,column = 5,rowspan = 1,columnspan = 1)
-p42.grid(row = 8,column = 1,rowspan = 1,columnspan = 1)
-p43.grid(row = 8,column = 2,rowspan = 1,columnspan = 1)
-p44.grid(row = 8,column = 3,rowspan = 1,columnspan = 1)
-p45.grid(row = 8,column = 4,rowspan = 1,columnspan = 1)
+p42.grid(row = 9,column = 1,rowspan = 1,columnspan = 1)
+p43.grid(row = 9,column = 2,rowspan = 1,columnspan = 1)
+p44.grid(row = 9,column = 3,rowspan = 1,columnspan = 1)
+p45.grid(row = 9,column = 4,rowspan = 1,columnspan = 1)
+p46.grid(row = 9,column = 5,rowspan = 1,columnspan = 1)
 
-p46.grid(row = 8,column = 5,rowspan = 1,columnspan = 1)
+p47.grid(row = 10,column = 1,rowspan = 1,columnspan = 1)
+p48.grid(row = 10,column = 2,rowspan = 1,columnspan = 1)
+p49.grid(row = 10,column = 3,rowspan = 1,columnspan = 1)
+p50.grid(row = 10,column = 4,rowspan = 1,columnspan = 1)
+p51.grid(row = 10,column = 5,rowspan = 1,columnspan = 1)
+
+p52.grid(row = 11,column = 1,rowspan = 1,columnspan = 1)
+p53.grid(row = 11,column = 2,rowspan = 1,columnspan = 1)
+p54.grid(row = 11,column = 3,rowspan = 1,columnspan = 1)
+p55.grid(row = 11,column = 4,rowspan = 1,columnspan = 1)
+p56.grid(row = 11,column = 5,rowspan = 1,columnspan = 1)
+
+p57.grid(row = 12,column = 1,rowspan = 1,columnspan = 1)
+p58.grid(row = 12,column = 2,rowspan = 1,columnspan = 1)
+p59.grid(row = 12,column = 3,rowspan = 1,columnspan = 1)
+p60.grid(row = 12,column = 4,rowspan = 1,columnspan = 1)
+p61.grid(row = 12,column = 5,rowspan = 1,columnspan = 1)
+
+
 canvas.grid(row=1,column =2,rowspan = 50,columnspan = 50)
 
 leftPane.grid(column = 100,row = 1,rowspan = 100,columnspan = 50)
-subButton.grid(row = 2,column = 55,rowspan = 28,columnspan = 51)
-numDisplay.grid(row = 2,column = 101,rowspan = 28,columnspan = 100)
-addButton.grid(row = 2,column = 102,rowspan = 28,columnspan = 100)
-
-
-
 
 ############## WIDGET BINDING #####################
 
@@ -345,15 +362,12 @@ button4.bind("<Button-1>",pressedOnEraser)
 button1.bind("<Button-1>",pressedOnPencilToolA)
 button3.bind("<Button-1>",pressedOnLineBrush)
 button2.bind("<Button-1>",pressedOnP2P)
-
 canvas.bind('<B1-Motion>', paint)  # drwaing the line
 canvas.bind('<ButtonRelease-1>', reset)
 addButton.bind("<Button-1>",add_value)
 subButton.bind("<Button-1>",sub_value)
-
 addButton.bind("<B1-Motion>",add_value)
 subButton.bind("<B1-Motion>",sub_value)
-
 button7.bind("<Button-1>",save)
 
 ############## MENU BAR  #####################
