@@ -9,9 +9,7 @@ root.geometry('1920x1080')
 root.resizable(False, False)
 root.overrideredirect(True)
 root.title('Paint Application')
-icon = PhotoImage(file = "paintIcon.png")
-root.iconphoto(False,icon)
-
+root.iconbitmap("paintIcon.ico")
 ############## IMAGES SRC #####################
 SidePanelImage = PhotoImage(file ="Srcimages/sidepanel.png")
 LeftSidePanelImage = PhotoImage(file="Srcimages/leftsidepannel.png")
@@ -143,6 +141,9 @@ def sub_value(e):
         numDisplay.configure(text = penwidth)
     else:
         pass
+
+def exit_app():
+    root.destroy()
 
 def save(e):
     files = [('JPEG', '*.jpeg')]
@@ -372,7 +373,7 @@ fileMenu.add_command(label="New Page", font=("Hack", 13),command=clearCanvas)
 fileMenu.add_command(label="Clear Page",font=("Hack", 13),command=clearCanvas)
 fileMenu.add_command(label="Save As", font=("Hack", 13),command = lambda:save_delay(E))
 fileMenu.add_separator()
-fileMenu.add_command(label="Exit", command=exit, font=("Hack", 13))
+fileMenu.add_command(label="Exit", command=exit_app, font=("Hack", 13))
 editMenu = Menu(menubar, tearoff=0, font=("Hack", 13))
 menubar.add_cascade(label="Tools", menu=editMenu)
 editMenu.add_command(label="Change Background Color",command = changeBgCanvas)
