@@ -1,7 +1,14 @@
 # Paint-Application
 ### **About:**
-This is a simple paint application made with the help of Python, using the UI library named tkinter. The modern look is achieved by layering images above tkinter widgets, and a canvas is used to draw the image. Since tkinter lacks a screen capture feature, the save function takes a screenshot, crops the image, and then saves it to a specified directory chosen by the user.
+This project is a simple paint application developed using Python and the tkinter UI library. The application features a modern design by overlaying images on tkinter widgets, and it provides users with a canvas to draw on.
 
+Key Features:
+Modern UI Design:
+A modern look is achieved by layering images over traditional tkinter widgets, giving the interface a polished appearance.
+Canvas Drawing:
+The canvas widget is used as the primary drawing area where users can freely paint or sketch.
+Save Function:
+Since tkinter doesn't natively support capturing screen or canvas images, the save function takes a screenshot of the canvas, crops it, and saves it to a directory specified by the user.
 ### Modules 
 - pyautogui
 - tkinter
